@@ -1,0 +1,89 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header" *ngFor="let breadscrum of breadscrums">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+        </app-breadcrumb>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="header">
+              <h2>All Products</h2>
+            </div>
+  
+            <div class="row clearfix">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="header">
+                    <h2> List </h2>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item routerLink="/admin/product/add-product" >
+                        <mat-icon>add_circle_outline</mat-icon>
+                        <span>Add</span>
+                      </button>
+                      <button mat-menu-item disabled>
+                        <mat-icon>delete_outline</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                      <button mat-menu-item>
+                        <mat-icon>refresh</mat-icon>
+                        <span>Refresh</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+                  <div class="tableBody">
+                    <div class="table-responsive">
+                      <table class="table display product-overview mb-30" id="support_table">
+                        <thead>
+                          <tr>
+                            <th> ID Product </th>
+                            <th> title </th>
+                            <th> rating </th>
+                            <th> brand </th>
+                            <th> Stock </th>
+                            <th> price </th>
+                            <th> category </th>
+                            <th> Actions  </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+  
+                          <tr *ngFor="let product of products" >
+                           
+                            <td>{{ product._id }}</td>
+                            <td>{{ product.title }} </td>
+                            <td>{{ product.rating }}</td>
+                            <td>{{ product.brand }}</td>
+                            <td>{{ product.countStock }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.category?.label }}</td>
+
+                            <td>
+                              <button mat-icon-button class="tbl-action-btn" [routerLink]="['/admin/product/edit-product' , product._id]" >
+                                <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                              </button>
+                              <button mat-icon-button class="tbl-action-btn" (click)="deleteProduct(product._id)" >
+                                <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'" ></app-feather-icons>
+                              </button>
+                            </td>
+  
+                          </tr>
+  
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

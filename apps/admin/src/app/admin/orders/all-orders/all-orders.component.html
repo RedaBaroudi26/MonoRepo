@@ -1,0 +1,65 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>All Orders</h2>
+          </div>
+
+          <div class="row clearfix m-2">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="card">
+                <div class="header">
+                  <h2> List </h2>
+                </div>
+                <div class="tableBody">
+                  <div class="table-responsive">
+                    <table class="table display product-overview mb-30" id="support_table">
+                      <thead>
+                        <tr>
+                          <th> ID  </th>
+                          <th> Client Name </th>
+                          <th> shipping Adress </th>
+                          <th> city </th>
+                          <th> Status </th>
+                          <th> Actions  </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr *ngFor="let order of orders" >
+                         
+                          <td> {{ order._id }} </td>
+                          <td> {{ order.user.name }} </td>
+                          <td> {{ order.shippingAdress }} </td>
+                          <td> {{ order.city }} </td>
+                          <td> 
+                            <div class="badge" [ngClass]="getColor(order.status)"  > {{ order.status }}  </div>
+                          </td>
+                          <td>
+                            <button mat-icon-button class="tbl-action-btn" (click)="deleteOrder()" >
+                              <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'" ></app-feather-icons>
+                            </button>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
